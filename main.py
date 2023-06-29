@@ -49,5 +49,5 @@ async def price_endpoint(item:PriceItem):
     print(yhat)
     return {'Predcition': np.round(float(yhat),2)}
 
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", port=5000)
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=5000)
