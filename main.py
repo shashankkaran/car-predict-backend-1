@@ -12,9 +12,8 @@ app = FastAPI()
 origins = [
     "https://sellcar.netlify.app",
     "http://localhost:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:8000",
-    "https://car-preds-price.herokuapp.com"
+    "https://bigblackcars.netlify.app",
+    
 ]
 
 app.add_middleware(
@@ -41,7 +40,11 @@ class PriceItem(BaseModel):
     Engine_cc:float
     Power_bhp:float
 
-@app.post('/')
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
+
+@app.post('/predict')
 async def price_endpoint(item:PriceItem):
 
     df = pd.DataFrame([item.dict().values()],columns=item.dict().keys())
